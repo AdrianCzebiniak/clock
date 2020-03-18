@@ -6,12 +6,13 @@ function pad(str, max) {
 function currentTime() {
   console.log('here');
   var dt = new Date();
-  var ampm = dt.getHours() > 12 ? 'PM' : 'AM';
+  var ampm = dt.getHours() > 12 ? 'pm' : 'am';
   var hours = dt.getHours() % 12
   hours = hours ? hours : 12;
   
-  var time = pad(hours, 2) + ":" + pad(dt.getMinutes(), 2) + ":" + pad(dt.getSeconds(), 2) + " " + ampm;
-  $('#clock').text(time);
+  var time = hours + ":" + pad(dt.getMinutes(), 2);
+  $('#time').text(time);
+  $("#ampm").text(ampm);
 
   var t = setTimeout(currentTime, 1000);
 }
