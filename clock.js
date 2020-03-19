@@ -1,10 +1,18 @@
+function urlParam (name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)')
+                      .exec(window.location.href);
+    if (results == null) {
+         return 0;
+    }
+    return results[1] || 0;
+}
+
 function pad(str, max) {
   str = str.toString();
   return str.length < max ? pad("0" + str, max) : str;
 }
 
 function currentTime() {
-  console.log('here');
   var dt = new Date();
   var ampm = dt.getHours() > 12 ? 'pm' : 'am';
   var hours = dt.getHours() % 12
@@ -17,4 +25,12 @@ function currentTime() {
   var t = setTimeout(currentTime, 1000);
 }
 
-currentTime();
+$(document).ready(function() {
+  color = urlParam('color');
+  if(color) {
+    $('body').css('color', '#' + color);
+  }
+
+  currentTime();
+});
+
